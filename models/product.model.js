@@ -10,7 +10,7 @@ const Product = sequelize.define(
       allowNull: false,
       primaryKey: true,
     },
-    name: { type: DataTypes.STRING, allowNull: false },
+    name: { type: DataTypes.JSON, allowNull: false },
     slug: { type: DataTypes.STRING, allowNull: false, unique: true },
     images: { type: DataTypes.JSON, allowNull: true, defaultValue: [] },
     price: { type: DataTypes.BIGINT, allowNull: false },

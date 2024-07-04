@@ -9,7 +9,7 @@ const ProductCategory = sequelize.define("product_category", {
     primaryKey: true,
   },
   name: { type: DataTypes.JSON, allowNull: false },
-  imageUrl: { type: DataTypes.STRING, allowNull: false },
+  imageUrl: { type: DataTypes.STRING, allowNull: true },
   slug: { type: DataTypes.STRING, allowNull: false },
 });
 

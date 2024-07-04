@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
 const { validationResult } = require("express-validator");
+const slugify = require("slugify");
 
 const Product = require("../models/product.model");
 const ProductCategory = require("../models/productCategory.model");
@@ -194,24 +195,27 @@ module.exports.postProduct = async (req, res, next) => {
       return res.status(400).send(errors.array());
     }
 
-    let images = (req.files?.image ?? req.files?.images) || [];
+    const slug = slugify(req.body.name);
 
-    if (!Array.isArray(images)) {
-      images = [images];
+    const product = await Product.findOne({ where: { slug } });
+    if (product) {
+      throw new Error("Product with this slug already exists!");
     }
+
+    let images = req.files?.images || [];
 
     let imageUrls = images.map((i) => i.path.replace(/\\/g, "/"));
 
     const result = await Product.create({
       name: req.body.name,
-      slug: req.body.slug,
+      slug,
       images: imageUrls,
-      price: req.body.price,
-      isHidden: req.body.isHidden === "true" ? 1 : 0,
-      productCategoryId: req.body.productCategoryId,
-      volume: req.body.volume,
-      itemsPerBlock: req.body.itemsPerBlock,
-      isGaz: req.body.isGaz === "true" ? 1 : 0,
+      price: +req.body.price,
+      isHidden: Boolean(req.body.isHidden),
+      //   productCategoryId: req.body.productCategoryId,
+      volume: +req.body.volume,
+      itemsPerBlock: +req.body.itemsPerBlock,
+      isGaz: Boolean(req.body.isGaz),
       createdAt: new Date(),
     });
 

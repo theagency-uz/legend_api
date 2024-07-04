@@ -53,7 +53,7 @@ module.exports = function (app) {
     onError: function (err, next) {
       next();
     },
-  }).fields([{ name: "image", maxCount: 1 }, { name: "images" }]);
+  }).fields([{ name: "images" }]);
 
   app.use(async (req, res, next) => {
     upload(req, res, function (err) {
