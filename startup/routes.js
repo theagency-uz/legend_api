@@ -7,7 +7,7 @@ const cors = require("cors");
 
 const multer = require("multer");
 
-const product = require("../routes/product.route");
+const productRouter = require("../routes/product.route");
 const error = require("../middleware/error.middleware");
 
 module.exports = function (app) {
@@ -91,6 +91,6 @@ module.exports = function (app) {
   app.use(express.static(path.join(__dirname, "../public")));
   app.use(helmet());
 
-  app.use("/api/products", product);
+  app.use("/api/products", productRouter);
   //   app.use(error);
 };

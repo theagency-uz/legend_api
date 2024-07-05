@@ -8,8 +8,9 @@ const productController = require("../controllers/product.controller");
 const Product = require("../models/product.model");
 const ProductCategory = require("../models/productCategory.model");
 
-// router.get("/", [auth, admin], productController.getProduct);
-router.get("/active", productController.getActiveProducts);
+// router.get("/", [auth, admin], productController.getProducts);
+router.get("/public", productController.getActiveProducts);
+router.get("/public/:productSlug", productController.getProductBySlug);
 
 router.post(
   "/",

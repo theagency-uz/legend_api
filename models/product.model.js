@@ -12,9 +12,10 @@ const Product = sequelize.define(
     },
     name: { type: DataTypes.JSON, allowNull: false },
     slug: { type: DataTypes.STRING, allowNull: false, unique: true },
-    images: { type: DataTypes.JSON, allowNull: true, defaultValue: [] },
+    previewImage: { type: DataTypes.STRING, allowNull: false },
+    images: { type: DataTypes.JSON, allowNull: true },
     price: { type: DataTypes.BIGINT, allowNull: false },
-    volume: { type: DataTypes.DECIMAL },
+    volume: { type: DataTypes.FLOAT },
     itemsPerBlock: { type: DataTypes.INTEGER, defaultValue: 1 },
     productCategoryId: {
       type: DataTypes.INTEGER,

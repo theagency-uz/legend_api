@@ -5,7 +5,7 @@ const slugify = require("slugify");
 const Product = require("../models/product.model");
 const ProductCategory = require("../models/productCategory.model");
 
-module.exports.getProduct = async (req, res, next) => {
+module.exports.getProducts = async (req, res, next) => {
   try {
     const products = await Product.findAll({
       include: [{ model: ProductCategory }],
@@ -20,13 +20,28 @@ module.exports.getProduct = async (req, res, next) => {
 module.exports.getActiveProducts = async (req, res, next) => {
   try {
     const products = await Product.findAll({
-      include: [{ model: ProductCategory }],
+      // include: [{ model: ProductCategory }],
       where: {
         isHidden: 0,
       },
     });
 
     res.send(products);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.getProductBySlug = async (req, res, next) => {
+  try {
+    const productSlug = req.params.productSlug;
+
+    const product = await Product.findOne({
+      where: { slug: productSlug, isHidden: false },
+      // include: [ProductCategory],
+    });
+
+    res.send(product);
   } catch (err) {
     next(err);
   }
@@ -135,36 +150,6 @@ module.exports.getProductById = async (req, res, next) => {
   }
 };
 
-module.exports.getProductBySlug = async (req, res, next) => {
-  try {
-    const productSlug = req.params.productSlug;
-    const product = await Product.findOne({
-      where: { slug: productSlug, isHidden: 0 },
-      include: [
-        Brand,
-        ProductCategory,
-        ProductType,
-        ProductSpecification,
-        {
-          model: ProductVariation,
-          where: { isHidden: false },
-          order: [["order", "ASC"]],
-          separate: true,
-          include: [
-            {
-              model: ProductVariationTypeItem,
-              include: ProductVariationType,
-            },
-          ],
-        },
-      ],
-    });
-    res.send(product);
-  } catch (err) {
-    next(err);
-  }
-};
-
 module.exports.getProductCategory = async (req, res, next) => {
   try {
     const productCategories = await ProductCategory.findAll();
@@ -204,7 +189,9 @@ module.exports.postProduct = async (req, res, next) => {
 
     let images = req.files?.images || [];
 
-    let imageUrls = images.map((i) => i.path.replace(/\\/g, "/"));
+    let imageUrls = images.map((i) =>
+      i.path.replace(/\\/g, "/").replace(/public/g, "")
+    );
 
     const result = await Product.create({
       name: req.body.name,
