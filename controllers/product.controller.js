@@ -537,14 +537,17 @@ module.exports.priceImport = async (req, res, next) => {
   }
 };
 
-module.exports.fileImport = async (req, res, next) => {
+module.exports.importProducts = async (req, res, next) => {
   try {
     let errors = validationResult(req);
+
     if (!errors.isEmpty()) {
       return res.status(400).send(errors.array());
     }
 
     let products;
+
+    const productsDb = await Product.findAll({});
 
     if (Array.isArray(req.body.products)) {
       products = req.body.products.map((p) => JSON.parse(p));
@@ -552,132 +555,59 @@ module.exports.fileImport = async (req, res, next) => {
       products = [JSON.parse(req.body.products)];
     }
 
-    const productVariationTypeItems = await ProductVariationTypeItem.findAll();
-    const brands = await Brand.findAll();
     const categories = await ProductCategory.findAll();
-    const types = await ProductType.findAll();
-    const codes = await PackageCode.findAll();
-    const productsDb = await Product.findAll();
 
-    const variationsReady = [];
     let productId;
+
     const productsUpdateReady = [];
     const productsCreateReady = [];
-    products.forEach((product) => {
-      if (!product.variation) {
-        productId = product.id;
 
-        let exists = productsDb.find(
-          (pdb) => pdb.id === product.id || pdb.artikul === product.artikul
-        );
+    for (let i = 0; i < products.length; i++) {
+      const product = products[i];
 
-        let tempProduct = Object.assign(
-          {},
-          product.id ? { id: product.id } : null,
-          product.artikul ? { artikul: product.artikul } : null,
-          product.name ? { name: product.name } : null,
-          product.slug ? { slug: product.slug } : null,
-          product.price ? { price: product.price } : null,
-          product.discount ? { price: product.discount } : null,
-          !exists ? { isHidden: 1 } : null,
-          product.descriptionRu
-            ? {
-                description: {
-                  ru: product.descriptionRu,
-                  uz: product.descriptionUz,
-                },
-              }
-            : null,
-          product.pyramidTopRu
-            ? {
-                pyramid: [
-                  {
-                    ru: product.pyramidTopRu,
-                    uz: product.pyramidTopUz,
-                    en: product.pyramidTopEn,
-                  },
-                  {
-                    ru: product.pyramidHeartRu,
-                    uz: product.pyramidHeartUz,
-                    en: product.pyramidHeartEn,
-                  },
-                  {
-                    ru: product.pyramidBaseRu,
-                    uz: product.pyramidBaseUz,
-                    en: product.pyramidBaseEn,
-                  },
-                ],
-              }
-            : null,
-          product.brand && brands.find((b) => b.name === product.brand)?.id
-            ? { brandId: brands.find((b) => b.name === product.brand)?.id }
-            : null,
-          product.product_category &&
-            categories.find((c) => c.name.ru === product.product_category)?.id
-            ? {
-                productCategoryId: categories.find(
-                  (c) => c.name.ru === product.product_category
-                )?.id,
-              }
-            : null,
-          product.product_type &&
-            types.find((t) => t.name === product.product_type)?.id
-            ? {
-                productTypeId: types.find(
-                  (t) => t.name === product.product_type
-                ).id,
-              }
-            : null,
-          product.package_code &&
-            codes.find((c) => String(c.code) === String(product.package_code))
-              ?.id
-            ? {
-                packageCodeId: codes.find(
-                  (c) => String(c.code) === String(product.package_code)
-                )?.id,
-              }
-            : null
-        );
+      productId = product.id;
 
-        if (exists) {
-          productsUpdateReady.push(tempProduct);
-        } else {
-          if (
-            tempProduct.name &&
-            tempProduct.slug &&
-            tempProduct.artikul &&
-            tempProduct.price &&
-            tempProduct.brandId &&
-            tempProduct.packageCodeId
-          ) {
-            productsCreateReady.push(tempProduct);
-          }
-        }
+      let exists = productsDb.find((pdb) => pdb.id === product.id);
+      let categoryId = categories.find(
+        (c) => c.slug === product.categorySlug
+      )?.id;
+
+      let tempProduct = Object.assign(
+        {},
+        product.id ? { id: product.id } : null,
+        product.name
+          ? { name: { ru: product.name?.ru, ru: product.name?.uz } }
+          : null,
+        product.slug ? { slug: product.slug } : null,
+        product.price ? { price: product.price } : null,
+        product.volume ? { volume: product.volume } : null,
+        product.isGaz ? { isGaz: product.isGaz } : null,
+        product.itemsPerBlock ? { itemsPerBlock: product.itemsPerBlock } : null,
+        product.packageCode ? { packageCode: product.packageCode } : null,
+        { isHidden: 0 },
+        categoryId
+          ? {
+              productCategoryId: categoryId,
+            }
+          : null
+      );
+
+      if (exists) {
+        productsUpdateReady.push(tempProduct);
       } else {
-        variationsReady.push({
-          artikul: product.artikul,
-          name: product.name,
-          price: product.price,
-          discount: product.discount,
-          productId: productId,
-          productVariationTypeItemId: productVariationTypeItems.find(
-            (item) => item.name.ru === product.variation
-          ).id,
-        });
+        productsCreateReady.push(tempProduct);
       }
-    });
+    }
 
     let resultUpdateProduct = 0;
+
     for (let i = 0; i < productsUpdateReady.length; i++) {
       let tempProduct = productsUpdateReady[i];
+
       let result = await Product.update(tempProduct, {
-        where: {
-          [Op.or]: [
-            { id: tempProduct.id || 0 },
-            { artikul: tempProduct.artikul || "" },
-          ],
-        },
+        where: { id: tempProduct.id || 0 },
       });
+
       if (result?.[0]) {
         resultUpdateProduct++;
       }
@@ -685,20 +615,9 @@ module.exports.fileImport = async (req, res, next) => {
 
     const resultCreateProduct = await Product.bulkCreate(productsCreateReady);
 
-    const resultVariation = await ProductVariation.bulkCreate(variationsReady, {
-      updateOnDuplicate: [
-        "name",
-        "price",
-        "discount",
-        "productId",
-        "productVariationTypeItemId",
-      ],
-    });
-
     return res.send({
       productUpdate: resultUpdateProduct,
       productCreate: resultCreateProduct,
-      variation: resultVariation,
     });
   } catch (err) {
     next(err);

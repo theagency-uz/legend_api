@@ -13,7 +13,7 @@ module.exports = {
       },
       {
         id: 2,
-        name: JSON.stringify({ ru: "Пластик", uz: "Пластик" }),
+        name: JSON.stringify({ ru: "Пластик", uz: "Plastik" }),
         slug: "plastic",
         createdAt: new Date(),
         updatedAt: new Date(),

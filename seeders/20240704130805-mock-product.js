@@ -51,8 +51,8 @@ module.exports = {
         previewImage:
           "/uploads/images/products/voda-v-steklyannoj-butylke-gazirovannaya-05-1.png",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-plastikovoj-butylke-033-1.png",
-          "/uploads/images/products/voda-v-plastikovoj-butylke-033-2.png",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-gazirovannaya-05-1.png",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-gazirovannaya-05-2.png",
         ]),
         price: 75600,
         isHidden: false,
@@ -73,8 +73,8 @@ module.exports = {
         previewImage:
           "/uploads/images/products/voda-v-steklyannoj-butylke-033-1.png",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-plastikovoj-butylke-033-1.png",
-          "/uploads/images/products/voda-v-plastikovoj-butylke-033-2.png",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-033-1.png",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-033-2.png",
         ]),
         price: 62400,
         isHidden: false,
@@ -95,8 +95,8 @@ module.exports = {
         previewImage:
           "/uploads/images/products/voda-v-steklyannoj-butylke-05-1.png",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-plastikovoj-butylke-033-1.png",
-          "/uploads/images/products/voda-v-plastikovoj-butylke-033-2.png",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-05-1.png",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-05-2.png",
         ]),
         price: 75600,
         isHidden: false,
@@ -114,8 +114,7 @@ module.exports = {
         previewImage:
           "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-033-1.png",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-plastikovoj-butylke-033-1.png",
-          "/uploads/images/products/voda-v-plastikovoj-butylke-033-2.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-033-1.png",
         ]),
         price: 17520,
         isHidden: false,
