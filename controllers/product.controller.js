@@ -360,22 +360,18 @@ module.exports.updateProductCategory = async (req, res, next) => {
 module.exports.deleteProduct = async (req, res, next) => {
   try {
     const productId = req.params.productId;
+
     const product = await Product.findByPk(productId);
+
     if (!product) {
       return res.status(404).send("Product not found");
     }
-    const result = await Product.destroy({
+
+    await Product.destroy({
       where: { id: productId },
     });
-    product.images.map(async (i) => {
-      await fileHelper.deleteFile(i);
-    });
 
-    res.sendStatus(200);
-
-    try {
-      await contentDeleteProduct(productId);
-    } catch (err) {}
+    return res.sendStatus(200);
   } catch (err) {
     next(err);
   }

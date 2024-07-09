@@ -8,6 +8,7 @@ const cors = require("cors");
 const multer = require("multer");
 
 const productRouter = require("../routes/product.route");
+const imageRouter = require("../routes/image.route");
 const error = require("../middleware/error.middleware");
 
 module.exports = function (app) {
@@ -17,7 +18,10 @@ module.exports = function (app) {
 
   const fileStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-      imagePath = "public/uploads/images/products";
+      let imagePath;
+      // imagePath = "public/uploads/images/products";
+      imagePath = "public/uploads/images/woodline";
+
       cb(null, imagePath);
     },
 
@@ -92,5 +96,6 @@ module.exports = function (app) {
   app.use(helmet());
 
   app.use("/api/products", productRouter);
+  app.use("/api/images", imageRouter);
   //   app.use(error);
 };
