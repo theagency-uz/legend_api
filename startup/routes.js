@@ -8,8 +8,14 @@ const cors = require("cors");
 const multer = require("multer");
 
 const productRouter = require("../routes/product.route");
+const categoryRouter = require("../routes/productCategory.route");
+const typeRouter = require("../routes/productType.route");
+const variationRouter = require("../routes/productVariation.route");
+
 const imageRouter = require("../routes/image.route");
+
 const error = require("../middleware/error.middleware");
+const filterMiddleware = require("../middleware/filter.middleware");
 
 module.exports = function (app) {
   if (app.get("env") === "development") {
@@ -96,6 +102,13 @@ module.exports = function (app) {
   app.use(helmet());
 
   app.use("/api/products", productRouter);
+  app.use("/api/categories", categoryRouter);
+  app.use("/api/types", typeRouter);
+  app.use("/api/variations", variationRouter);
+  app.use("/api/filters", filterMiddleware, (req, res) => {
+    res.send(req.filters);
+  });
+
   app.use("/api/images", imageRouter);
   //   app.use(error);
 };

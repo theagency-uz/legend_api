@@ -15,14 +15,9 @@ const Product = sequelize.define(
     previewImage: { type: DataTypes.STRING, allowNull: false },
     images: { type: DataTypes.JSON, allowNull: true },
     price: { type: DataTypes.BIGINT, allowNull: false },
-    volume: { type: DataTypes.FLOAT },
     packageCode: { type: DataTypes.STRING },
     itemsPerBlock: { type: DataTypes.INTEGER, defaultValue: 1 },
-    productCategoryId: {
-      type: DataTypes.INTEGER,
-    },
     isHidden: { type: DataTypes.BOOLEAN, defaultValue: false },
-    isGaz: { type: DataTypes.BOOLEAN },
   },
   {}
 );
