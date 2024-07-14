@@ -6,7 +6,7 @@ const router = express.Router();
 const productController = require("../controllers/product.controller");
 
 const Product = require("../models/product.model");
-const ProductCategory = require("../models/productCategory.model");
+const ProductCategory = require("../models/product-category.model");
 
 // router.get("/", [auth, admin], productController.getProducts);
 router.get("/public", productController.getActiveProductsByQuery);

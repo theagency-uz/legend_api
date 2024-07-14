@@ -3,7 +3,7 @@ const { body, check } = require("express-validator");
 
 const router = express.Router();
 
-const categoryController = require("../controllers/productCategory.controller");
+const categoryController = require("../controllers/product-category.controller");
 
 // router.get("/", [auth, admin], categoryController.getProducts);
 router.get("/public", categoryController.getCategories);

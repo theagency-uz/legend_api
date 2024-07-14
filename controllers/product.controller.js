@@ -3,9 +3,9 @@ const { validationResult } = require("express-validator");
 const slugify = require("slugify");
 
 const Product = require("../models/product.model");
-const ProductCategory = require("../models/productCategory.model");
-const ProductVariation = require("../models/productVariation");
-const ProductType = require("../models/productType.model");
+const ProductCategory = require("../models/product-category.model");
+const ProductVariation = require("../models/product-variation");
+const ProductType = require("../models/product-type.model");
 
 const { makeCondition } = require("../utils/db");
 

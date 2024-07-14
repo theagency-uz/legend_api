@@ -2,7 +2,7 @@ const { Op } = require("sequelize");
 const { validationResult } = require("express-validator");
 const slugify = require("slugify");
 
-const ProductVariation = require("../models/productVariation");
+const ProductVariation = require("../models/product-variation");
 
 module.exports.getVariations = async (req, res, next) => {
   try {

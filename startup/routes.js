@@ -8,9 +8,10 @@ const cors = require("cors");
 const multer = require("multer");
 
 const productRouter = require("../routes/product.route");
-const categoryRouter = require("../routes/productCategory.route");
-const typeRouter = require("../routes/productType.route");
-const variationRouter = require("../routes/productVariation.route");
+const categoryRouter = require("../routes/product-category.route");
+const typeRouter = require("../routes/product-type.route");
+const variationRouter = require("../routes/product-variation.route");
+const transactionRouter = require("../routes/transaction.route");
 
 const imageRouter = require("../routes/image.route");
 
@@ -105,6 +106,8 @@ module.exports = function (app) {
   app.use("/api/categories", categoryRouter);
   app.use("/api/types", typeRouter);
   app.use("/api/variations", variationRouter);
+  app.use("/api/payments", transactionRouter);
+
   app.use("/api/filters", filterMiddleware, (req, res) => {
     res.send(req.filters);
   });

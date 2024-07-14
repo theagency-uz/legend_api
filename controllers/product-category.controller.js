@@ -2,7 +2,7 @@ const { Op } = require("sequelize");
 const { validationResult } = require("express-validator");
 const slugify = require("slugify");
 
-const ProductCategory = require("../models/productCategory.model");
+const ProductCategory = require("../models/product-category.model");
 
 module.exports.getCategories = async (req, res, next) => {
   try {

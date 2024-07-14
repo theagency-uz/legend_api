@@ -1,6 +1,6 @@
-const ProductCategory = require("../models/productCategory.model");
-const ProductVariation = require("../models/productVariation");
-const ProductType = require("../models/productType.model");
+const ProductCategory = require("../models/product-category.model");
+const ProductVariation = require("../models/product-variation");
+const ProductType = require("../models/product-type.model");
 
 module.exports = async function (req, res, next) {
   try {
