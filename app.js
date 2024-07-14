@@ -16,6 +16,12 @@ const Product = require("./models/product.model");
 const ProductCategory = require("./models/productCategory.model");
 const ProductType = require("./models/productType.model");
 const ProductVariation = require("./models/productVariation");
+const User = require("./models/user.model");
+const Order = require("./models/order.model");
+const OrderStatus = require("./models/order-status.model");
+const OrderItem = require("./models/order-item.model");
+const PaymentType = require("./models/payment-type");
+const Transaction = require("./models/payme-transaction.model");
 
 ProductCategory.hasMany(Product);
 Product.belongsTo(ProductCategory);
@@ -25,6 +31,23 @@ Product.belongsTo(ProductType);
 
 ProductVariation.hasMany(Product);
 Product.belongsTo(ProductVariation);
+
+User.hasMany(Order);
+Order.belongsTo(User);
+
+PaymentType.hasMany(Order);
+Order.belongsTo(PaymentType);
+
+OrderStatus.hasMany(Order);
+Order.belongsTo(OrderStatus);
+
+Order.hasMany(OrderItem);
+OrderItem.belongsTo(Order);
+Product.hasMany(OrderItem);
+OrderItem.belongsTo(Product);
+
+Order.hasOne(Transaction);
+Transaction.belongsTo(Order);
 
 sequelize
   .sync({

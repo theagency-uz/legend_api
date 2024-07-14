@@ -11,7 +11,7 @@ const PaymentType = sequelize.define(
       primaryKey: true,
     },
     name: { type: DataTypes.JSON },
-    isActive: { type: TINYINT, defaultValue: true },
+    isActive: { type: DataTypes.TINYINT, defaultValue: true },
   },
   {}
 );

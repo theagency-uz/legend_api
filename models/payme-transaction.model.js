@@ -13,8 +13,9 @@ const PaymeTransaction = sequelize.define(
       primaryKey: true,
     },
     state: {
-      type: DataTypes.ENUM(Object.values(TransactionState)),
-      allowNull: false,
+      type: DataTypes.ENUM(
+        Object.values(TransactionState).map((val) => String(val))
+      ),
     },
     amount: { type: DataTypes.BIGINT, allowNull: false },
     create_time: { type: DataTypes.BIGINT, defaultValue: Date.now() },
