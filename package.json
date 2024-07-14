@@ -16,6 +16,7 @@
   "dependencies": {
     "@googleapis/sheets": "^8.0.0",
     "axios": "^1.7.2",
+    "base-64": "^1.0.0",
     "config": "^3.3.11",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

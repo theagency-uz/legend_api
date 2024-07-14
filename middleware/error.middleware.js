@@ -1,4 +1,4 @@
-module.exports = async function (error, req, res) {
+module.exports = (error, req, res, next) => {
   console.log(error);
 
   if (error.isTransactionError) {
@@ -12,5 +12,7 @@ module.exports = async function (error, req, res) {
     });
   }
 
-  res.status(error.statusCode || 500).send(error.message);
+  res.status(error.statusCode || 500).json({
+    error,
+  });
 };

@@ -14,7 +14,7 @@ const variationRouter = require("../routes/productVariation.route");
 
 const imageRouter = require("../routes/image.route");
 
-const error = require("../middleware/error.middleware");
+const errorMiddleware = require("../middleware/error.middleware");
 const filterMiddleware = require("../middleware/filter.middleware");
 
 module.exports = function (app) {
@@ -110,5 +110,5 @@ module.exports = function (app) {
   });
 
   app.use("/api/images", imageRouter);
-  //   app.use(error);
+  app.use(errorMiddleware);
 };
