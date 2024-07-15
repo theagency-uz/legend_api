@@ -21,7 +21,8 @@ const Order = require("./models/order.model");
 const OrderStatus = require("./models/order-status.model");
 const OrderItem = require("./models/order-item.model");
 const PaymentType = require("./models/payment-type");
-const Transaction = require("./models/payme-transaction.model");
+const PaymeTransaction = require("./models/payme-transaction.model");
+const ClickTransaction = require("./models/click-transaction.model");
 
 ProductCategory.hasMany(Product);
 Product.belongsTo(ProductCategory);
@@ -46,8 +47,11 @@ OrderItem.belongsTo(Order);
 Product.hasMany(OrderItem);
 OrderItem.belongsTo(Product);
 
-Order.hasOne(Transaction);
-Transaction.belongsTo(Order);
+Order.hasOne(PaymeTransaction);
+PaymeTransaction.belongsTo(Order);
+
+Order.hasOne(ClickTransaction);
+ClickTransaction.belongsTo(Order);
 
 sequelize
   .sync({

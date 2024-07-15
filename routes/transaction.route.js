@@ -5,6 +5,9 @@ const router = express.Router();
 
 const transactionController = require("../controllers/transaction.controller");
 
-router.get("/payme", transactionController.payme);
+router.post("/payme", transactionController.payme);
+
+router.post("/click/prepare", transactionController.clickPrepare);
+router.post("/click/complete", transactionController.clickComplete);
 
 module.exports = router;

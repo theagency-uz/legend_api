@@ -54,8 +54,7 @@ module.exports.getProductsByQuery = async (req, res, next) => {
       : isDraft
       ? makeCondition("isHidden", true)
       : {};
-
-    console.log(query, filterCondition);
+      
     const products = await Product.findAll({ ...filterCondition });
 
     res.send(products);
