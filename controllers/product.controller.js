@@ -39,26 +39,24 @@ module.exports.getActiveProductsByQuery = async (req, res, next) => {
   }
 };
 
-module.exports.getProducts = async (req, res, next) => {
+module.exports.getProductsByQuery = async (req, res, next) => {
   try {
-    const products = await Product.findAll({
-      include: [{ model: ProductCategory }],
-    });
+    const query = req.query;
 
-    res.send(products);
-  } catch (err) {
-    next(err);
-  }
-};
+    const isAll = query?.filter === "all";
+    const isActive = query?.filter === "active";
+    const isDraft = query?.filter === "draft";
 
-module.exports.getActiveProducts = async (req, res, next) => {
-  try {
-    const products = await Product.findAll({
-      include: [{ model: ProductVariation }],
-      where: {
-        isHidden: 0,
-      },
-    });
+    const filterCondition = isAll
+      ? {}
+      : isActive
+      ? makeCondition("isHidden", false)
+      : isDraft
+      ? makeCondition("isHidden", true)
+      : {};
+
+    console.log(query, filterCondition);
+    const products = await Product.findAll({ ...filterCondition });
 
     res.send(products);
   } catch (err) {
