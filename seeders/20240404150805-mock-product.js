@@ -145,6 +145,138 @@ module.exports = {
         productTypeId: 2,
         productVariationId: 1,
       },
+      {
+        id: 8,
+        name: JSON.stringify({
+          ru: "ПЭТ 1 - без газа",
+          uz: "ПЭТ 1 - без газа",
+        }),
+        slug: "voda-v-plastikovoj-butylke-1",
+        previewImage:
+          "/uploads/images/products/voda-v-plastikovoj-butylke-1-1.png",
+        images: JSON.stringify([
+          "/uploads/images/products/voda-v-plastikovoj-butylke-1-1.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-1-2.png",
+        ]),
+        price: 18800,
+        isHidden: false,
+        itemsPerBlock: 8,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        productCategoryId: 2,
+        productTypeId: 2,
+        productVariationId: 3,
+      },
+      {
+        id: 9,
+        name: JSON.stringify({
+          ru: "ПЭТ 1 - газ",
+          uz: "ПЭТ 1 - газ",
+        }),
+        slug: "voda-v-plastikovoj-butylke-gazirovannaya-1",
+        previewImage:
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-1-1.png",
+        images: JSON.stringify([
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-1-1.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-1-2.png",
+        ]),
+        price: 18800,
+        isHidden: false,
+        itemsPerBlock: 8,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        productCategoryId: 2,
+        productTypeId: 1,
+        productVariationId: 3,
+      },
+      {
+        id: 10,
+        name: JSON.stringify({
+          ru: "ПЭТ 1,5 - без газа",
+          uz: "ПЭТ 1,5 - без газа",
+        }),
+        slug: "voda-v-plastikovoj-butylke-15",
+        previewImage:
+          "/uploads/images/products/voda-v-plastikovoj-butylke-15-1.png",
+        images: JSON.stringify([
+          "/uploads/images/products/voda-v-plastikovoj-butylke-15-1.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-15-2.png",
+        ]),
+        price: 16800,
+        isHidden: false,
+        itemsPerBlock: 6,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        productCategoryId: 2,
+        productTypeId: 2,
+        productVariationId: 4,
+      },
+      {
+        id: 11,
+        name: JSON.stringify({
+          ru: "ПЭТ 1,5 - газ",
+          uz: "ПЭТ 1,5 - газ",
+        }),
+        slug: "voda-v-plastikovoj-butylke-gazirovannaya-15",
+        previewImage:
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-15-1.png",
+        images: JSON.stringify([
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-15-1.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-15-2.png",
+        ]),
+        price: 16800,
+        isHidden: false,
+        itemsPerBlock: 6,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        productCategoryId: 2,
+        productTypeId: 1,
+        productVariationId: 4,
+      },
+      {
+        id: 12,
+        name: JSON.stringify({
+          ru: "ПЭТ 0,5 - без газа",
+          uz: "ПЭТ 0,5 - без газа",
+        }),
+        slug: "voda-v-plastikovoj-butylke-05",
+        previewImage:
+          "/uploads/images/products/voda-v-plastikovoj-butylke-05-1.png",
+        images: JSON.stringify([
+          "/uploads/images/products/voda-v-plastikovoj-butylke-05-1.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-05-2.png",
+        ]),
+        price: 19800,
+        isHidden: false,
+        itemsPerBlock: 12,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        productCategoryId: 2,
+        productTypeId: 2,
+        productVariationId: 2,
+      },
+      {
+        id: 13,
+        name: JSON.stringify({
+          ru: "ПЭТ 0,5 - газ",
+          uz: "ПЭТ 0,5 - газ",
+        }),
+        slug: "voda-v-plastikovoj-butylke-gazirovannaya-05",
+        previewImage:
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-05-1.png",
+        images: JSON.stringify([
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-05-1.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-05-2.png",
+        ]),
+        price: 19800,
+        isHidden: false,
+        itemsPerBlock: 12,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        productCategoryId: 2,
+        productTypeId: 1,
+        productVariationId: 2,
+      },
     ]);
   },
 
