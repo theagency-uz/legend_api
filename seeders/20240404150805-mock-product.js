@@ -6,7 +6,10 @@ module.exports = {
     return queryInterface.bulkInsert("products", [
       {
         id: 1,
-        name: JSON.stringify({ ru: "19 литров", uz: "19 литров" }),
+        name: JSON.stringify({
+          ru: "Вода в кулере 19 л",
+          uz: "Вода в кулере 19 л",
+        }),
         slug: "19-litrov",
         previewImage: "/uploads/images/products/19-litrov-1.png",
         images: JSON.stringify(["/uploads/images/products/19-litrov-1.png"]),
@@ -20,8 +23,8 @@ module.exports = {
       {
         id: 2,
         name: JSON.stringify({
-          ru: "Стекло 0,33 - газ",
-          uz: "Стекло 0,33 - газ",
+          ru: "Вода в стеклянной бутылке газированная 0.33 л",
+          uz: "Вода в стеклянной бутылке газированная 0.33 л",
         }),
         slug: "voda-v-steklyannoj-butylke-gazirovannaya-033",
         previewImage:
@@ -42,8 +45,8 @@ module.exports = {
       {
         id: 3,
         name: JSON.stringify({
-          ru: "Стекло 0,5 - газ",
-          uz: "Стекло 0,5 - газ",
+          ru: "Вода в стеклянной бутылке газированная 0.5 л",
+          uz: "Вода в стеклянной бутылке газированная 0.5 л",
         }),
         slug: "voda-v-steklyannoj-butylke-gazirovannaya-05",
         previewImage:
@@ -64,8 +67,8 @@ module.exports = {
       {
         id: 4,
         name: JSON.stringify({
-          ru: "Стекло 0,33 - без газа",
-          uz: "Стекло 0,33 - без газа",
+          ru: "Вода в стеклянной бутылке 0.3 л",
+          uz: "Вода в стеклянной бутылке 0.3 л",
         }),
         slug: "voda-v-steklyannoj-butylke-033",
         previewImage:
@@ -86,8 +89,8 @@ module.exports = {
       {
         id: 5,
         name: JSON.stringify({
-          ru: "Стекло 0,5 - без газа",
-          uz: "Стекло 0,5 - без газа",
+          ru: "Вода в стеклянной бутылке 0.5 л",
+          uz: "Вода в стеклянной бутылке 0.5 л",
         }),
         slug: "voda-v-steklyannoj-butylke-05",
         previewImage:
@@ -107,7 +110,10 @@ module.exports = {
       },
       {
         id: 6,
-        name: JSON.stringify({ ru: "ПЭТ 0,33 - газ", uz: "ПЭТ 0,33 - газ" }),
+        name: JSON.stringify({
+          ru: "Вода в пластиковой бутылке газированная 0.33 л",
+          uz: "Вода в пластиковой бутылке газированная 0.33 л",
+        }),
         slug: "voda-v-plastikovoj-butylke-gazirovannaya-033",
         previewImage:
           "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-033-1.png",
@@ -126,8 +132,8 @@ module.exports = {
       {
         id: 7,
         name: JSON.stringify({
-          ru: "ПЭТ 0,33 - без газа",
-          uz: "ПЭТ 0,33 - без газа",
+          ru: "Вода в пластиковой бутылке 0.33 л",
+          uz: "Вода в пластиковой бутылке 0.33 л",
         }),
         slug: "voda-v-plastikovoj-butylke-033",
         previewImage:
@@ -148,8 +154,8 @@ module.exports = {
       {
         id: 8,
         name: JSON.stringify({
-          ru: "ПЭТ 1 - без газа",
-          uz: "ПЭТ 1 - без газа",
+          ru: "Вода в пластиковой бутылке 1 л",
+          uz: "Вода в пластиковой бутылке 1 л",
         }),
         slug: "voda-v-plastikovoj-butylke-1",
         previewImage:
@@ -170,8 +176,8 @@ module.exports = {
       {
         id: 9,
         name: JSON.stringify({
-          ru: "ПЭТ 1 - газ",
-          uz: "ПЭТ 1 - газ",
+          ru: "Вода в пластиковой бутылке газированная 1 л",
+          uz: "Вода в пластиковой бутылке газированная 1 л",
         }),
         slug: "voda-v-plastikovoj-butylke-gazirovannaya-1",
         previewImage:
@@ -192,8 +198,8 @@ module.exports = {
       {
         id: 10,
         name: JSON.stringify({
-          ru: "ПЭТ 1,5 - без газа",
-          uz: "ПЭТ 1,5 - без газа",
+          ru: "Вода в пластиковой бутылке 1.5 л",
+          uz: "Вода в пластиковой бутылке 1.5 л",
         }),
         slug: "voda-v-plastikovoj-butylke-15",
         previewImage:
@@ -214,8 +220,8 @@ module.exports = {
       {
         id: 11,
         name: JSON.stringify({
-          ru: "ПЭТ 1,5 - газ",
-          uz: "ПЭТ 1,5 - газ",
+          ru: "Вода в пластиковой бутылке газированная 1.5 л",
+          uz: "Вода в пластиковой бутылке газированная 1.5 л",
         }),
         slug: "voda-v-plastikovoj-butylke-gazirovannaya-15",
         previewImage:
@@ -236,8 +242,8 @@ module.exports = {
       {
         id: 12,
         name: JSON.stringify({
-          ru: "ПЭТ 0,5 - без газа",
-          uz: "ПЭТ 0,5 - без газа",
+          ru: "Вода в пластиковой бутылке 0.5 л",
+          uz: "Вода в пластиковой бутылке 0.5 л",
         }),
         slug: "voda-v-plastikovoj-butylke-05",
         previewImage:
@@ -258,8 +264,8 @@ module.exports = {
       {
         id: 13,
         name: JSON.stringify({
-          ru: "ПЭТ 0,5 - газ",
-          uz: "ПЭТ 0,5 - газ",
+          ru: "Вода в пластиковой бутылке газированная 0.5 л",
+          uz: "Вода в пластиковой бутылке газированная 0.5 л",
         }),
         slug: "voda-v-plastikovoj-butylke-gazirovannaya-05",
         previewImage:

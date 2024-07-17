@@ -12,6 +12,7 @@ const categoryRouter = require("../routes/product-category.route");
 const typeRouter = require("../routes/product-type.route");
 const variationRouter = require("../routes/product-variation.route");
 const transactionRouter = require("../routes/transaction.route");
+const authRouter = require("../routes/auth.route");
 
 const imageRouter = require("../routes/image.route");
 
@@ -102,6 +103,7 @@ module.exports = function (app) {
   app.use(express.static(path.join(__dirname, "../public")));
   app.use(helmet());
 
+  app.use("/api/auth", authRouter);
   app.use("/api/products", productRouter);
   app.use("/api/categories", categoryRouter);
   app.use("/api/types", typeRouter);
