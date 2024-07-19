@@ -67,12 +67,9 @@ module.exports.getProductVariationsByProductId = async (req, res, next) => {
           where: { ...makeCondition("id", product.productTypeId) },
         },
       ],
-      where: {
-        id: { [Op.ne]: productId },
-      },
     });
 
-    return res.send(productVariations.map((pr) => pr.product_variation));
+    return res.send(productVariations);
   } catch (err) {
     next(err);
   }
