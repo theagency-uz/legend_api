@@ -5,6 +5,13 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert("product_types", [
       {
+        id: 1000,
+        name: JSON.stringify({ ru: "", uz: "" }),
+        slug: "",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
         id: 1,
         name: JSON.stringify({ ru: "С газом", uz: "Gazli" }),
         slug: "gaz",

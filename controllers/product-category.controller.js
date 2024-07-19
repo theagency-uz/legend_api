@@ -6,7 +6,9 @@ const ProductCategory = require("../models/product-category.model");
 
 module.exports.getCategories = async (req, res, next) => {
   try {
-    const categories = await ProductCategory.findAll({});
+    const categories = await ProductCategory.findAll({
+      where: { id: { [Op.ne]: 1000 } },
+    });
     res.send(categories);
   } catch (err) {
     next(err);

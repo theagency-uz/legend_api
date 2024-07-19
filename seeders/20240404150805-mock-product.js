@@ -19,6 +19,8 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         productVariationId: 5,
+        productCategoryId: 1000,
+        productTypeId: 1000,
       },
       {
         id: 2,
@@ -67,8 +69,8 @@ module.exports = {
       {
         id: 4,
         name: JSON.stringify({
-          ru: "Вода в стеклянной бутылке 0.3 л",
-          uz: "Вода в стеклянной бутылке 0.3 л",
+          ru: "Вода в стеклянной бутылке 0.33 л",
+          uz: "Вода в стеклянной бутылке 0.33 л",
         }),
         slug: "voda-v-steklyannoj-butylke-033",
         previewImage:
@@ -119,6 +121,7 @@ module.exports = {
           "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-033-1.png",
         images: JSON.stringify([
           "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-033-1.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-033-2.png",
         ]),
         price: 17520,
         isHidden: false,

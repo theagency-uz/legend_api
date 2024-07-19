@@ -9,8 +9,14 @@ const Product = require("../models/product.model");
 const ProductCategory = require("../models/product-category.model");
 
 router.get("/", productController.getProductsByQuery);
+
 router.get("/public", productController.getActiveProductsByQuery);
+
 router.get("/public/:productSlug", productController.getProductBySlug);
+router.get(
+  "/public/variations/:productId",
+  productController.getProductVariationsByProductId
+);
 
 // router.post(
 //   "/",

@@ -17,15 +17,15 @@ module.exports.getActiveProductsByQuery = async (req, res, next) => {
       include: [
         {
           model: ProductVariation,
-          ...makeCondition("slug", query.litrage),
+          where: { ...makeCondition("slug", query.litrage) },
         },
         {
           model: ProductCategory,
-          ...makeCondition("slug", query.material),
+          where: { ...makeCondition("slug", query.material) },
         },
         {
           model: ProductType,
-          ...makeCondition("slug", query.gaz),
+          where: { ...makeCondition("slug", query.gaz) },
         },
       ],
       where: {
@@ -34,6 +34,45 @@ module.exports.getActiveProductsByQuery = async (req, res, next) => {
     });
 
     return res.send(products);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.getProductVariationsByProductId = async (req, res, next) => {
+  try {
+    const productId = Number(req.params.productId);
+
+    if (isNaN(productId)) {
+      return res.status(400).send({ errorMsg: "product id must be a number" });
+    }
+
+    const product = await Product.findByPk(productId);
+
+    if (!product) {
+      return res.status(400).send({ errorMsg: "wrong product id" });
+    }
+
+    const productVariations = await Product.findAll({
+      include: [
+        {
+          model: ProductVariation,
+        },
+        {
+          model: ProductCategory,
+          where: { ...makeCondition("id", product.productCategoryId) },
+        },
+        {
+          model: ProductType,
+          where: { ...makeCondition("id", product.productTypeId) },
+        },
+      ],
+      where: {
+        id: { [Op.ne]: productId },
+      },
+    });
+
+    return res.send(productVariations.map((pr) => pr.product_variation));
   } catch (err) {
     next(err);
   }
@@ -54,7 +93,7 @@ module.exports.getProductsByQuery = async (req, res, next) => {
       : isDraft
       ? makeCondition("isHidden", true)
       : {};
-      
+
     const products = await Product.findAll({ ...filterCondition });
 
     res.send(products);

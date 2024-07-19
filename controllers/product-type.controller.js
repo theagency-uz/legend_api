@@ -6,7 +6,9 @@ const ProductType = require("../models/product-type.model");
 
 module.exports.getTypes = async (req, res, next) => {
   try {
-    const types = await ProductType.findAll({});
+    const types = await ProductType.findAll({
+      where: { id: { [Op.ne]: 1000 } },
+    });
     res.send(types);
   } catch (err) {
     next(err);

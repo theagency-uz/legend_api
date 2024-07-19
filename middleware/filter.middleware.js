@@ -1,3 +1,5 @@
+const { Op } = require("sequelize");
+
 const ProductCategory = require("../models/product-category.model");
 const ProductVariation = require("../models/product-variation");
 const ProductType = require("../models/product-type.model");
@@ -8,9 +10,11 @@ module.exports = async function (req, res, next) {
 
     const categories = await ProductCategory.findAll({
       attributes: ["id", "name", "slug"],
+      where: { id: { [Op.ne]: 1000 } },
     });
     const types = await ProductType.findAll({
       attributes: ["id", "name", "slug"],
+      where: { id: { [Op.ne]: 1000 } },
     });
     const variations = await ProductVariation.findAll({
       attributes: ["id", "slug"],
