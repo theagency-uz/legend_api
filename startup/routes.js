@@ -13,6 +13,7 @@ const typeRouter = require("../routes/product-type.route");
 const variationRouter = require("../routes/product-variation.route");
 const transactionRouter = require("../routes/transaction.route");
 const authRouter = require("../routes/auth.route");
+const orderRouter = require("../routes/order.route");
 
 const imageRouter = require("../routes/image.route");
 
@@ -109,6 +110,7 @@ module.exports = function (app) {
   app.use("/api/types", typeRouter);
   app.use("/api/variations", variationRouter);
   app.use("/api/payments", transactionRouter);
+  app.use("/api/orders", orderRouter);
 
   app.use("/api/filters", filterMiddleware, (req, res) => {
     res.send(req.filters);

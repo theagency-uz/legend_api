@@ -2,7 +2,6 @@ const paymeTransactionService = require("../services/payme-transaction.service")
 const clickTransactionService = require("../services/click-transaction.service");
 
 const { PaymeMethod } = require("../enums/payme-transaction.enum");
-const {} = require("../enums/click-transaction.enum");
 
 class TransactionController {
   constructor(paymeService, clickService) {

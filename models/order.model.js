@@ -10,9 +10,11 @@ const Order = sequelize.define(
       allowNull: false,
       primaryKey: true,
     },
-    statusId: { type: DataTypes.INTEGER, defaultValue: 1 },
     totalPrice: { type: DataTypes.BIGINT },
     info: { type: DataTypes.JSON, allowNull: true, defaultValue: {} },
+    phone: { type: DataTypes.STRING },
+    address: { type: DataTypes.JSON, allowNull: true },
+    comment: { type: DataTypes.STRING },
   },
   {}
 );
