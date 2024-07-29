@@ -1,5 +1,6 @@
 const transactionRepo = require("../repo/click-transaction.repo");
 const userRepo = require("../repo/user.repo");
+const orderRepo = require("../repo/order.repo");
 const productRepo = require("../repo/product.repo");
 
 const {
@@ -11,9 +12,9 @@ const {
 const { checkClickSignature } = require("../utils/click-check-signature");
 
 class TransactionService {
-  constructor(repo, userRepo, productRepo) {
+  constructor(repo, orderRepo, productRepo) {
     this.repo = repo;
-    this.userRepo = userRepo;
+    this.orderRepo = orderRepo;
     this.productRepo = productRepo;
   }
 
@@ -21,7 +22,7 @@ class TransactionService {
     const {
       click_trans_id: transId,
       service_id: serviceId,
-      merchant_trans_id: userId,
+      merchant_trans_id: orderId,
       product_id: productId,
       amount,
       action,
@@ -32,7 +33,7 @@ class TransactionService {
     const signatureData = {
       transId,
       serviceId,
-      userId,
+      orderId,
       amount,
       action,
       signTime,
@@ -55,7 +56,7 @@ class TransactionService {
     }
 
     const isAlreadyPaid = await this.repo.getByFilter({
-      userId,
+      orderId,
       productId,
       status: TransactionStatus.Paid,
     });
@@ -67,12 +68,12 @@ class TransactionService {
       };
     }
 
-    const user = await this.userRepo.getById(userId);
+    const order = await this.orderRepo.getById(orderId);
 
-    if (!user) {
+    if (!order) {
       return {
-        error: ClickError.UserNotFound,
-        error_note: "User not found",
+        error: ClickError.OrderNotFound,
+        error_note: "Order not found",
       };
     }
 
@@ -105,8 +106,7 @@ class TransactionService {
 
     await this.repo.create({
       id: transId,
-      user_id: userId,
-      product_id: productId,
+      orderId,
       status: TransactionStatus.Pending,
       create_time: time,
       amount,
@@ -115,7 +115,7 @@ class TransactionService {
 
     return {
       click_trans_id: transId,
-      merchant_trans_id: userId,
+      merchant_trans_id: orderId,
       merchant_prepare_id: time,
       error: ClickError.Success,
       error_note: "Success",
@@ -126,7 +126,7 @@ class TransactionService {
     const {
       click_trans_id: transId,
       service_id: serviceId,
-      merchant_trans_id: userId,
+      merchant_trans_id: orderId,
       product_id: productId,
       merchant_prepare_id: prepareId,
       amount,
@@ -139,7 +139,7 @@ class TransactionService {
     const signatureData = {
       transId,
       serviceId,
-      userId,
+      orderId,
       prepareId,
       amount,
       action,
@@ -162,12 +162,12 @@ class TransactionService {
       };
     }
 
-    const user = await this.userRepo.getById(userId);
+    const order = await this.orderRepo.getById(orderId);
 
-    if (!user) {
+    if (!order) {
       return {
-        error: ClickError.UserNotFound,
-        error_note: "User not found",
+        error: ClickError.OrderNotFound,
+        error_note: "Order not found",
       };
     }
 
@@ -192,7 +192,7 @@ class TransactionService {
     }
 
     const isAlreadyPaid = await this.repo.getByFilter({
-      userId,
+      orderId,
       productId,
       status: TransactionStatus.Paid,
     });
@@ -212,7 +212,7 @@ class TransactionService {
     }
 
     const transaction = await this.repo.getById(transId);
-    
+
     if (transaction && transaction.status === TransactionStatus.Canceled) {
       return {
         error: ClickError.TransactionCanceled,
@@ -241,7 +241,7 @@ class TransactionService {
 
     return {
       click_trans_id: transId,
-      merchant_trans_id: userId,
+      merchant_trans_id: orderId,
       merchant_confirm_id: time,
       error: ClickError.Success,
       error_note: "Success",
@@ -249,4 +249,8 @@ class TransactionService {
   }
 }
 
-module.exports = new TransactionService(transactionRepo, userRepo, productRepo);
+module.exports = new TransactionService(
+  transactionRepo,
+  orderRepo,
+  productRepo
+);

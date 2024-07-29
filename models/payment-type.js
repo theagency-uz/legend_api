@@ -10,7 +10,7 @@ const PaymentType = sequelize.define(
       allowNull: false,
       primaryKey: true,
     },
-    name: { type: DataTypes.JSON },
+    name: { type: DataTypes.STRING },
     isActive: { type: DataTypes.TINYINT, defaultValue: true },
   },
   {}

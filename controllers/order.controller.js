@@ -4,6 +4,7 @@ const { validationResult } = require("express-validator");
 const Order = require("../models/order.model");
 const OrderItem = require("../models/order-item.model");
 const User = require("../models/user.model");
+const PaymentType = require("../models/payment-type");
 
 const { makeCondition } = require("../utils/db");
 
@@ -21,22 +22,33 @@ module.exports.createOrder = async (req, res, next) => {
     const address = JSON.parse(req.body.address);
     const comment = req.body.comment;
 
-    const paymentTypeId = req.body.paymentTypeId;
     const totalPrice = req.body.totalPrice;
     const bag = JSON.parse(req.body.bag);
 
     let orderStatusId = 1;
 
-    const user = await User.create({ name, surname, address, phone });
+    const paymentType = await PaymentType.findOne({
+      name: req.body.paymentType ?? "",
+    });
+
+    const [user] = await User.findOrCreate({
+      where: { phone },
+      defaults: {
+        name,
+        phone,
+        surname,
+        address,
+      },
+    });
 
     const order = await Order.create({
       userId: user.id,
       phone,
-      paymentTypeId,
+      paymentTypeId: paymentType.id,
       totalPrice,
       address,
       comment,
-      statusId: orderStatusId,
+      orderStatusId: orderStatusId,
     });
 
     await OrderItem.bulkCreate([
