@@ -15,9 +15,9 @@ class TransactionController {
 
       switch (method) {
         case PaymeMethod.CheckPerformTransaction: {
-          await this.paymeService.checkPerformTransaction(params, id);
+          const result = await this.paymeService.checkPerformTransaction(params, id);
 
-          return res.json({ result: { allow: true } });
+          return res.json({ result });
         }
         case PaymeMethod.CheckTransaction: {
           const result = await this.paymeService.checkTransaction(params, id);

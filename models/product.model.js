@@ -16,6 +16,7 @@ const Product = sequelize.define(
     images: { type: DataTypes.JSON, allowNull: true },
     price: { type: DataTypes.BIGINT, allowNull: false },
     packageCode: { type: DataTypes.STRING },
+    code: { type: DataTypes.STRING },
     itemsPerBlock: { type: DataTypes.INTEGER, defaultValue: 1 },
     isHidden: { type: DataTypes.BOOLEAN, defaultValue: false },
   },

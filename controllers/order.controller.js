@@ -6,8 +6,6 @@ const OrderItem = require("../models/order-item.model");
 const User = require("../models/user.model");
 const PaymentType = require("../models/payment-type");
 
-const { makeCondition } = require("../utils/db");
-
 module.exports.createOrder = async (req, res, next) => {
   try {
     let errors = validationResult(req);
@@ -25,7 +23,7 @@ module.exports.createOrder = async (req, res, next) => {
     const totalPrice = req.body.totalPrice;
     const bag = JSON.parse(req.body.bag);
 
-    let orderStatusId = 1;
+    let orderStatusId = 2;
 
     const paymentType = await PaymentType.findOne({
       name: req.body.paymentType ?? "",

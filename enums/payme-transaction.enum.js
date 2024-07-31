@@ -17,13 +17,13 @@ exports.PaymeError = {
       en: "Invalid amount",
     },
   },
-  UserNotFound: {
-    name: "UserNotFound",
+  Canceled: {
+    name: "Canceled",
     code: -31050,
     message: {
-      uz: "Biz sizning hisobingizni topolmadik.",
-      ru: "Мы не нашли вашу учетную запись",
-      en: "We couldn't find your account",
+      uz: "Buyurtma bekor qilindi",
+      ru: "Заказ отменен.",
+      en: "Order canceled",
     },
   },
   ProductNotFound: {
@@ -33,6 +33,15 @@ exports.PaymeError = {
       uz: "Biz mahsulotni topolmadik.",
       ru: "Нам не удалось найти товар.",
       en: "We could not find the product.",
+    },
+  },
+  OrderNotFound: {
+    name: "OrderNotFound",
+    code: -31050,
+    message: {
+      uz: "Biz buyurtma topolmadik.",
+      ru: "Нам не удалось найти заказ.",
+      en: "We could not find the order.",
     },
   },
   CantDoOperation: {
@@ -67,7 +76,7 @@ exports.PaymeError = {
     code: -31050,
     message: {
       uz: "Mahsulot uchun to'lov kutilayapti",
-      ru: "Ожидается оплата товар",
+      ru: "Ожидается оплата за товар",
       en: "Payment for the product is pending",
     },
   },
@@ -85,6 +94,7 @@ exports.PaymeError = {
 exports.PaymeData = {
   UserId: "user_id",
   ProductId: "product_id",
+  OrderId: "order_id",
 };
 
 exports.TransactionState = {
