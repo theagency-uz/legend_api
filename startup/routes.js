@@ -105,7 +105,7 @@ module.exports = function (app) {
   app.use(helmet());
 
   app.use("/api/auth", authRouter);
-  app.use("/api/products", productRouter);
+  app.use("/api/products", filterMiddleware, productRouter);
   app.use("/api/categories", categoryRouter);
   app.use("/api/types", typeRouter);
   app.use("/api/variations", variationRouter);

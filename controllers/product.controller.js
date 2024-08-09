@@ -121,7 +121,7 @@ module.exports.getProductBySlug = async (req, res, next) => {
       where: { slug: productSlug, isHidden: false },
     });
 
-    res.send(product);
+    res.send({ product, filters: req.filters });
   } catch (err) {
     next(err);
   }
