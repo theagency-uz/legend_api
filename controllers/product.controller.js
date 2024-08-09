@@ -99,13 +99,26 @@ module.exports.getProductsByQuery = async (req, res, next) => {
   }
 };
 
+module.exports.getActiveProductBySlug = async (req, res, next) => {
+  try {
+    const productSlug = req.params.productSlug;
+
+    const product = await Product.findOne({
+      where: { slug: productSlug },
+    });
+
+    res.send(product);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports.getProductBySlug = async (req, res, next) => {
   try {
     const productSlug = req.params.productSlug;
 
     const product = await Product.findOne({
       where: { slug: productSlug, isHidden: false },
-      // include: [ProductCategory],
     });
 
     res.send(product);
