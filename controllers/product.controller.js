@@ -33,6 +33,8 @@ module.exports.getActiveProductsByQuery = async (req, res, next) => {
       },
     });
 
+    console.log(products);
+
     return res.send(products);
   } catch (err) {
     next(err);
