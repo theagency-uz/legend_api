@@ -5,7 +5,9 @@ const router = express.Router();
 
 router.post("/", (req, res) => {
   try {
-    res.json(req.files.images[0]);
+    res.json({
+      images: req.files?.images,
+    });
   } catch (err) {
     console.log(err);
   }

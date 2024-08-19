@@ -28,8 +28,8 @@ module.exports = function (app) {
   const fileStorage = multer.diskStorage({
     destination: (req, file, cb) => {
       let imagePath;
-      // imagePath = "public/uploads/images/products";
-      imagePath = "public/uploads/images/woodline";
+      imagePath = "public/uploads/images/products";
+      // imagePath = "public/uploads/images/woodline";
 
       cb(null, imagePath);
     },
@@ -75,6 +75,7 @@ module.exports = function (app) {
       } else if (err) {
         next(err);
       }
+
       next();
     });
   });
