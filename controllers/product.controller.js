@@ -33,8 +33,6 @@ module.exports.getActiveProductsByQuery = async (req, res, next) => {
       },
     });
 
-    console.log(products);
-
     return res.send(products);
   } catch (err) {
     next(err);
@@ -106,7 +104,7 @@ module.exports.getActiveProductBySlug = async (req, res, next) => {
     const productSlug = req.params.productSlug;
 
     const product = await Product.findOne({
-      where: { slug: productSlug },
+      where: { slug: productSlug, isHidden: false },
     });
 
     res.send(product);
@@ -120,10 +118,54 @@ module.exports.getProductBySlug = async (req, res, next) => {
     const productSlug = req.params.productSlug;
 
     const product = await Product.findOne({
-      where: { slug: productSlug, isHidden: false },
+      where: { slug: productSlug },
     });
 
     res.send({ product, filters: req.filters });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.editProductBySlug = async (req, res, next) => {
+  try {
+    const productSlug = req.params.productSlug;
+    const newProductData = req.body;
+
+    const product = await Product.findOne({
+      where: { slug: productSlug },
+    });
+
+    const productTypeId = (
+      await ProductType.findOne({
+        where: { slug: newProductData.type },
+      })
+    ).id;
+    const productCategoryId = (
+      await ProductCategory.findOne({
+        where: { slug: newProductData.category },
+      })
+    ).id;
+    const productVariationId = (
+      await ProductVariation.findOne({
+        where: { slug: newProductData.litrage },
+      })
+    ).id;
+
+    product.name = newProductData.name;
+    product.price = newProductData.price;
+    product.isHidden = newProductData.isHidden;
+    product.code = newProductData.code;
+    product.packageCode = newProductData.packageCode;
+    product.images = newProductData.imagesUpload;
+    product.previewImage = newProductData.previewImageUpload;
+    product.productCategoryId = productCategoryId;
+    product.productTypeId = productTypeId;
+    product.productVariationId = productVariationId;
+
+    await product.save();
+
+    res.send({ product, filters: req.filters, updated: true });
   } catch (err) {
     next(err);
   }
