@@ -80,7 +80,7 @@ module.exports.getProductsByQuery = async (req, res, next) => {
     const query = req.query;
 
     const isAll = query?.filter === "all";
-    const isActive = query?.filter === "active";
+    const isActive = query?.filter === "published";
     const isDraft = query?.filter === "draft";
 
     const filterCondition = isAll
@@ -91,7 +91,7 @@ module.exports.getProductsByQuery = async (req, res, next) => {
       ? makeCondition("isHidden", true)
       : {};
 
-    const products = await Product.findAll({ ...filterCondition });
+    const products = await Product.findAll({ where: { ...filterCondition } });
 
     res.send(products);
   } catch (err) {
