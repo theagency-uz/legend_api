@@ -132,6 +132,8 @@ module.exports.editProductBySlug = async (req, res, next) => {
     const productSlug = req.params.productSlug;
     const newProductData = req.body;
 
+    const newProductSlug = slugify(newProductData.name.ru);
+
     const product = await Product.findOne({
       where: { slug: productSlug },
     });
@@ -153,12 +155,14 @@ module.exports.editProductBySlug = async (req, res, next) => {
     ).id;
 
     product.name = newProductData.name;
+    product.slug = newProductSlug;
     product.price = newProductData.price;
     product.isHidden = newProductData.isHidden;
     product.code = newProductData.code;
     product.packageCode = newProductData.packageCode;
     product.images = newProductData.imagesUpload;
     product.previewImage = newProductData.previewImageUpload;
+    product.itemsPerBlock = newProductData.itemsPerBlock;
     product.productCategoryId = productCategoryId;
     product.productTypeId = productTypeId;
     product.productVariationId = productVariationId;
@@ -166,6 +170,61 @@ module.exports.editProductBySlug = async (req, res, next) => {
     await product.save();
 
     res.send({ product, filters: req.filters, updated: true });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.createProduct = async (req, res, next) => {
+  try {
+    const newProductData = req.body;
+
+    const productSlug = slugify(newProductData.name.ru);
+
+    const productTypeId = (
+      await ProductType.findOne({
+        where: { slug: newProductData.type },
+      })
+    ).id;
+    const productCategoryId = (
+      await ProductCategory.findOne({
+        where: { slug: newProductData.category },
+      })
+    ).id;
+    const productVariationId = (
+      await ProductVariation.findOne({
+        where: { slug: newProductData.litrage },
+      })
+    ).id;
+
+    const createdProduct = await Product.create({
+      name: newProductData.name,
+      slug: productSlug,
+      price: newProductData.price,
+      isHidden: newProductData.isHidden,
+      code: newProductData.code,
+      packageCode: newProductData.packageCode,
+      images: newProductData.imagesUpload,
+      previewImage: newProductData.previewImageUpload,
+      itemsPerBlock: newProductData.itemsPerBlock,
+      productCategoryId,
+      productTypeId,
+      productVariationId,
+    });
+
+    res.send({ product: createdProduct, filters: req.filters, created: true });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.deleteProduct = async (req, res, next) => {
+  try {
+    const productSlug = req.params.productSlug;
+
+    await Product.destroy({ where: { slug: productSlug } });
+
+    res.send({ deleted: true });
   } catch (err) {
     next(err);
   }
