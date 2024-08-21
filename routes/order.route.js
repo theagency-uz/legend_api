@@ -8,6 +8,10 @@ const orderController = require("../controllers/order.controller");
 const Order = require("../models/order.model");
 const OrderItem = require("../models/order-item.model");
 
+router.get("/statuses", orderController.getOrderStatuses);
+
+router.get("/", orderController.getOrdersByQuery);
+
 router.post("/", orderController.createOrder);
 
 module.exports = router;

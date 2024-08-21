@@ -3,8 +3,11 @@ const { validationResult } = require("express-validator");
 
 const Order = require("../models/order.model");
 const OrderItem = require("../models/order-item.model");
+const OrderStatus = require("../models/order-status.model");
 const User = require("../models/user.model");
 const PaymentType = require("../models/payment-type");
+
+const { makeCondition } = require("../utils/db");
 
 module.exports.createOrder = async (req, res, next) => {
   try {
@@ -61,6 +64,34 @@ module.exports.createOrder = async (req, res, next) => {
     ]);
 
     return res.status(200).send(order);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.getOrdersByQuery = async (req, res, next) => {
+  try {
+    const query = req.query;
+
+    const orderStatusId = query?.status === "all";
+    const period = query?.period === "published";
+
+    const filterCondition = {
+      ...makeCondition("orderStatusId", orderStatusId),
+    };
+
+    const orders = await Order.findAll({ where: { ...filterCondition } });
+
+    res.send(orders);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.getOrderStatuses = async (req, res, next) => {
+  try {
+    const statuses = await OrderStatus.findAll({});
+    res.send(statuses);
   } catch (err) {
     next(err);
   }
