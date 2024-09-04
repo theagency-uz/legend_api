@@ -14,7 +14,7 @@ const User = sequelize.define(
       primaryKey: true,
     },
     name: { type: DataTypes.STRING, allowNull: false },
-    surname: { type: DataTypes.JSON, allowNull: true },
+    surname: { type: DataTypes.STRING, allowNull: true },
     address: { type: DataTypes.JSON, allowNull: true },
     email: { type: DataTypes.STRING, allowNull: true },
     password: { type: DataTypes.STRING, allowNull: true },

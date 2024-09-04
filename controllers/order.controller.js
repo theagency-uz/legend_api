@@ -6,8 +6,14 @@ const OrderItem = require("../models/order-item.model");
 const OrderStatus = require("../models/order-status.model");
 const User = require("../models/user.model");
 const PaymentType = require("../models/payment-type");
+const Product = require("../models/product.model");
 
-const { makeCondition } = require("../utils/db");
+const { makeCondition, makeConditionWithDates } = require("../utils/db");
+const {
+  getCurrentDate,
+  getMonday,
+  getFirstDateOfMonth,
+} = require("../utils/date");
 
 module.exports.createOrder = async (req, res, next) => {
   try {
@@ -72,15 +78,60 @@ module.exports.createOrder = async (req, res, next) => {
 module.exports.getOrdersByQuery = async (req, res, next) => {
   try {
     const query = req.query;
+    let filterCondition = {};
 
-    const orderStatusId = query?.status === "all";
-    const period = query?.period === "published";
+    if (Object.keys(query).length > 0) {
+      if (query?.status) {
+        filterCondition = {
+          ...filterCondition,
+          ...makeCondition("orderStatusId", Number(query?.status)),
+        };
+      }
 
-    const filterCondition = {
-      ...makeCondition("orderStatusId", orderStatusId),
-    };
+      if (query?.period) {
+        switch (query?.period) {
+          case "week":
+            filterCondition = {
+              ...filterCondition,
+              ...makeConditionWithDates(
+                "createdAt",
+                getMonday(),
+                getCurrentDate()
+              ),
+            };
+            break;
+          case "month":
+            filterCondition = {
+              ...filterCondition,
+              ...makeConditionWithDates(
+                "createdAt",
+                getFirstDateOfMonth(),
+                getCurrentDate()
+              ),
+            };
+            break;
+          case "year":
+            filterCondition = {
+              ...filterCondition,
+              ...makeConditionWithDates(
+                "createdAt",
+                getFirstDateOfMonth(),
+                getCurrentDate()
+              ),
+            };
+            break;
+          default:
+        }
+      }
+    }
 
-    const orders = await Order.findAll({ where: { ...filterCondition } });
+    const orders = await Order.findAll({
+      where: { ...filterCondition },
+      include: [
+        { model: OrderItem, include: [{ model: Product }] },
+        { model: User },
+      ],
+    });
 
     res.send(orders);
   } catch (err) {
