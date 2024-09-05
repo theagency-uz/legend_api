@@ -154,3 +154,35 @@ module.exports.getOrderStatuses = async (req, res, next) => {
     next(err);
   }
 };
+
+module.exports.updateOrderStatus = async (req, res, next) => {
+  try {
+    const orderId = req.params.id;
+    const orderStatusId = req.body.orderStatusId;
+
+    if (isNaN(orderId) || isNaN(orderStatusId)) return next();
+
+    const result = await Order.update(
+      { orderStatusId },
+      { where: { id: orderId } }
+    );
+
+    res.send(result);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.deleteOrder = async (req, res, next) => {
+  try {
+    const orderId = req.params.id;
+
+    if (isNaN(orderId)) return next();
+
+    const result = await Order.destroy({ where: { id: orderId } });
+
+    res.json({ result });
+  } catch (err) {
+    next(err);
+  }
+};
