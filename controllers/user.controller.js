@@ -7,7 +7,7 @@ const { makeCondition } = require("../utils/db");
 
 module.exports.getUsersByQuery = async (req, res, next) => {
   try {
-    const users = await User.findAll({});
+    const users = await User.findAll({ where: { role: { [Op.ne]: "admin" } } });
     res.send(users);
   } catch (err) {
     next(err);
