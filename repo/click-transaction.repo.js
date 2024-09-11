@@ -10,7 +10,7 @@ class TransactionRepo {
   }
 
   async getById(transactionId) {
-    return this.model.findById(transactionId);
+    return this.model.findByPk(transactionId);
   }
 
   async getByFilter(filter) {
@@ -18,7 +18,7 @@ class TransactionRepo {
   }
 
   async updateById(transactionId, update) {
-    return this.model.findByIdAndUpdate(transactionId, update);
+    return this.model.update(update, { where: { id: transactionId } });
   }
 }
 

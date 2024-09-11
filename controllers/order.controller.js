@@ -41,19 +41,20 @@ module.exports.createOrder = async (req, res, next) => {
     const [user] = await User.findOrCreate({
       where: {
         phone,
-        name,
-        surname,
-        address: req.body.address,
-        comment,
       },
       defaults: {
         name,
         phone,
         surname,
         address,
-        comment,
       },
     });
+
+    user.name = name;
+    user.surname = surname;
+    user.address = address;
+
+    await user.save();
 
     const order = await Order.create({
       userId: user.id,

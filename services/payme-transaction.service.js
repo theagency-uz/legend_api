@@ -107,7 +107,7 @@ class TransactionService {
       throw new TransactionError(PaymeError.Canceled, id);
     }
 
-    const detail = await checkPerformTransactionDetail(orderId);
+    const detail = await this.checkPerformTransactionDetail(orderId);
 
     return {
       detail: detail,
@@ -322,6 +322,15 @@ class TransactionService {
       transaction: transaction.id,
       state: -Math.abs(transaction.state),
     };
+  }
+
+  async getStatement(params) {
+    const transactions = await this.repo.getByTransactionPeriod(
+      params.from,
+      params.to
+    );
+
+    return { transactions };
   }
 }
 

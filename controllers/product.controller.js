@@ -8,12 +8,18 @@ const ProductVariation = require("../models/product-variation");
 const ProductType = require("../models/product-type.model");
 
 const { makeCondition } = require("../utils/db");
+const { getPagination, getPagingData } = require("../utils/pagination");
+
+const { ACTIVE_PRODUCTS_SIZE } = require("../enums/products.enum");
 
 module.exports.getActiveProductsByQuery = async (req, res, next) => {
   try {
     const query = req.query;
+    const page = req.query?.page;
 
-    const products = await Product.findAll({
+    const { limit, offset } = getPagination(page, ACTIVE_PRODUCTS_SIZE);
+
+    const products = await Product.findAndCountAll({
       include: [
         {
           model: ProductVariation,
@@ -31,9 +37,13 @@ module.exports.getActiveProductsByQuery = async (req, res, next) => {
       where: {
         isHidden: 0,
       },
+      limit,
+      offset,
     });
 
-    return res.send(products);
+    const response = getPagingData(products, page, limit);
+
+    return res.send(response);
   } catch (err) {
     next(err);
   }

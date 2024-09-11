@@ -1,3 +1,5 @@
+const { Op } = require("sequelize");
+
 const PaymeTransaction = require("../models/payme-transaction.model");
 
 class TransactionRepo {
@@ -20,6 +22,15 @@ class TransactionRepo {
 
   async update(update, filter) {
     return await this.model.update(update, filter);
+  }
+
+  async getByTransactionPeriod(from, to) {
+    return await this.model.findAll({
+      order: [["create_time", "ASC"]],
+      where: {
+        create_time: { [Op.between]: [from, to] },
+      },
+    });
   }
 }
 

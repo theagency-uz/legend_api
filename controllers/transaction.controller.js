@@ -15,28 +15,30 @@ class TransactionController {
 
       switch (method) {
         case PaymeMethod.CheckPerformTransaction: {
-          const result = await this.paymeService.checkPerformTransaction(params, id);
-
+          const result = await this.paymeService.checkPerformTransaction(
+            params,
+            id
+          );
           return res.json({ result });
         }
         case PaymeMethod.CheckTransaction: {
           const result = await this.paymeService.checkTransaction(params, id);
-
           return res.json({ result, id });
         }
         case PaymeMethod.CreateTransaction: {
           const result = await this.paymeService.createTransaction(params, id);
-
           return res.json({ result, id });
         }
         case PaymeMethod.PerformTransaction: {
           const result = await this.paymeService.performTransaction(params, id);
-
           return res.json({ result, id });
         }
         case PaymeMethod.CancelTransaction: {
           const result = await this.paymeService.cancelTransaction(params, id);
-
+          return res.json({ result, id });
+        }
+        case PaymeMethod.GetStatement: {
+          const result = await this.paymeService.getStatement(params, id);
           return res.json({ result, id });
         }
       }

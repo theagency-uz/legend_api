@@ -24,33 +24,34 @@ const PaymentType = require("./models/payment-type");
 const PaymeTransaction = require("./models/payme-transaction.model");
 const ClickTransaction = require("./models/click-transaction.model");
 
-ProductCategory.hasMany(Product);
+ProductCategory.hasMany(Product, { onDelete: "CASCADE" });
 Product.belongsTo(ProductCategory);
 
-ProductType.hasMany(Product);
+ProductType.hasMany(Product, { onDelete: "CASCADE" });
 Product.belongsTo(ProductType);
 
-ProductVariation.hasMany(Product);
+ProductVariation.hasMany(Product, { onDelete: "CASCADE" });
 Product.belongsTo(ProductVariation);
 
-User.hasMany(Order);
+User.hasMany(Order, { onDelete: "CASCADE" });
 Order.belongsTo(User);
 
-PaymentType.hasMany(Order);
+PaymentType.hasMany(Order, { onDelete: "CASCADE" });
 Order.belongsTo(PaymentType);
 
-OrderStatus.hasMany(Order);
+OrderStatus.hasMany(Order, { onDelete: "CASCADE" });
 Order.belongsTo(OrderStatus);
 
-Order.hasMany(OrderItem);
+Order.hasMany(OrderItem, { onDelete: "CASCADE" });
 OrderItem.belongsTo(Order);
-Product.hasMany(OrderItem);
+
+Product.hasMany(OrderItem, { onDelete: "CASCADE" });
 OrderItem.belongsTo(Product);
 
-Order.hasOne(PaymeTransaction);
+Order.hasOne(PaymeTransaction, { onDelete: "CASCADE" });
 PaymeTransaction.belongsTo(Order);
 
-Order.hasOne(ClickTransaction);
+Order.hasOne(ClickTransaction, { onDelete: "CASCADE" });
 ClickTransaction.belongsTo(Order);
 
 sequelize
