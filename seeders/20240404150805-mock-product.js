@@ -21,6 +21,8 @@ module.exports = {
         productVariationId: 5,
         productCategoryId: 1000,
         productTypeId: 1000,
+        code: "02201001001280004",
+        packageCode: "1626357"
       },
       {
         id: 2,
@@ -43,6 +45,8 @@ module.exports = {
         productCategoryId: 1,
         productTypeId: 1,
         productVariationId: 1,
+        code: "02201002001203003",
+        packageCode: "1626368"
       },
       {
         id: 3,
@@ -65,6 +69,8 @@ module.exports = {
         productCategoryId: 1,
         productTypeId: 1,
         productVariationId: 2,
+        code: "02201002001203002",
+        packageCode: "1626374"
       },
       {
         id: 4,
@@ -87,6 +93,8 @@ module.exports = {
         productCategoryId: 1,
         productTypeId: 2,
         productVariationId: 1,
+        code: "02201001001280002",
+        packageCode: "1626373"
       },
       {
         id: 5,
@@ -109,6 +117,8 @@ module.exports = {
         productCategoryId: 1,
         productTypeId: 2,
         productVariationId: 2,
+        code: "02201001001280005",
+        packageCode: "1627446"
       },
       {
         id: 6,
@@ -131,6 +141,8 @@ module.exports = {
         productCategoryId: 2,
         productTypeId: 1,
         productVariationId: 1,
+        code: "02201002001203004",
+        packageCode: "1626369"
       },
       {
         id: 7,
@@ -153,6 +165,8 @@ module.exports = {
         productCategoryId: 2,
         productTypeId: 2,
         productVariationId: 1,
+        code: "02201001001280003",
+        packageCode: "1626370"
       },
       {
         id: 8,
@@ -175,6 +189,8 @@ module.exports = {
         productCategoryId: 2,
         productTypeId: 2,
         productVariationId: 3,
+        code: "02201001001280007",
+        packageCode: "1633849"
       },
       {
         id: 9,
@@ -197,6 +213,8 @@ module.exports = {
         productCategoryId: 2,
         productTypeId: 1,
         productVariationId: 3,
+        code: "02201002001203007",
+        packageCode: "1633850"
       },
       {
         id: 10,
@@ -219,6 +237,8 @@ module.exports = {
         productCategoryId: 2,
         productTypeId: 2,
         productVariationId: 4,
+        code: "02201001001280006",
+        packageCode: "1627649"
       },
       {
         id: 11,
@@ -241,6 +261,8 @@ module.exports = {
         productCategoryId: 2,
         productTypeId: 1,
         productVariationId: 4,
+        code: "02201002001203005",
+        packageCode: "1627646"
       },
       {
         id: 12,
@@ -263,6 +285,8 @@ module.exports = {
         productCategoryId: 2,
         productTypeId: 2,
         productVariationId: 2,
+        code: "02201001001280001",
+        packageCode: "1626372"
       },
       {
         id: 13,
@@ -285,6 +309,8 @@ module.exports = {
         productCategoryId: 2,
         productTypeId: 1,
         productVariationId: 2,
+        code: "02201002001203001",
+        packageCode: "1626371"
       },
     ]);
   },
