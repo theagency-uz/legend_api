@@ -3,7 +3,10 @@ const { body, check } = require("express-validator");
 
 const router = express.Router();
 
-router.post("/", (req, res) => {
+const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
+
+router.post("/", [auth, admin], (req, res) => {
   try {
     res.json({
       images: req.files?.images,

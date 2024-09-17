@@ -8,12 +8,15 @@ const orderController = require("../controllers/order.controller");
 const Order = require("../models/order.model");
 const OrderItem = require("../models/order-item.model");
 
-router.get("/statuses", orderController.getOrderStatuses);
-router.put("/:id", orderController.updateOrderStatus);
-router.delete("/:id", orderController.deleteOrder);
+const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
 
-router.get("/", orderController.getOrdersByQuery);
+router.get("/statuses", [auth, admin], orderController.getOrderStatuses);
+router.put("/:id", [auth, admin], orderController.updateOrderStatus);
+router.delete("/:id", [auth, admin], orderController.deleteOrder);
 
-router.post("/", orderController.createOrder);
+router.get("/", [auth, admin], orderController.getOrdersByQuery);
+
+router.post("/", [auth, admin], orderController.createOrder);
 
 module.exports = router;

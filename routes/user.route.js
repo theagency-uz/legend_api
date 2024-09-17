@@ -4,6 +4,9 @@ const router = express.Router();
 
 const userController = require("../controllers/user.controller");
 
-router.get("/admin", userController.getUsersByQuery);
+const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
+
+router.get("/admin", [auth, admin], userController.getUsersByQuery);
 
 module.exports = router;

@@ -5,10 +5,18 @@ const router = express.Router();
 
 const productController = require("../controllers/product.controller");
 
-router.get("/admin", productController.getProductsByQuery);
-router.get("/admin/:productSlug", productController.getProductBySlug);
+const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
+
+router.get("/admin", [auth, admin], productController.getProductsByQuery);
+router.get(
+  "/admin/:productSlug",
+  [auth, admin],
+  productController.getProductBySlug
+);
 router.post(
   "/admin",
+  [auth, admin],
   [
     body("name")
       .isObject()
@@ -43,6 +51,7 @@ router.post(
 );
 router.put(
   "/admin/:productSlug",
+  [auth, admin],
   [
     body("name")
       .isObject()
@@ -75,7 +84,11 @@ router.put(
   ],
   productController.editProductBySlug
 );
-router.delete("/admin/:productSlug", productController.deleteProduct);
+router.delete(
+  "/admin/:productSlug",
+  [auth, admin],
+  productController.deleteProduct
+);
 
 router.get("/public", productController.getActiveProductsByQuery);
 router.get("/public/:productSlug", productController.getActiveProductBySlug);
