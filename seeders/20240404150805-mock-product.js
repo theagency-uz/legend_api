@@ -11,8 +11,8 @@ module.exports = {
           uz: "Вода в кулере 19 л",
         }),
         slug: "19-litrov",
-        previewImage: "/uploads/images/products/19-litrov-1.png",
-        images: JSON.stringify(["/uploads/images/products/19-litrov-1.png"]),
+        previewImage: "/uploads/images/products/19-litrov-1.webp",
+        images: JSON.stringify(["/uploads/images/products/19-litrov-1.webp"]),
         price: 20000,
         isHidden: false,
         itemsPerBlock: 1,
@@ -32,10 +32,10 @@ module.exports = {
         }),
         slug: "voda-v-steklyannoj-butylke-gazirovannaya-033",
         previewImage:
-          "/uploads/images/products/voda-v-steklyannoj-butylke-gazirovannaya-033-1.png",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-gazirovannaya-033-1.webp",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-steklyannoj-butylke-gazirovannaya-033-1.png",
-          "/uploads/images/products/voda-v-steklyannoj-butylke-gazirovannaya-033-2.png",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-gazirovannaya-033-1.webp",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-gazirovannaya-033-2.webp",
         ]),
         price: 62400,
         isHidden: false,
@@ -56,10 +56,10 @@ module.exports = {
         }),
         slug: "voda-v-steklyannoj-butylke-gazirovannaya-05",
         previewImage:
-          "/uploads/images/products/voda-v-steklyannoj-butylke-gazirovannaya-05-1.png",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-gazirovannaya-05-1.webp",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-steklyannoj-butylke-gazirovannaya-05-1.png",
-          "/uploads/images/products/voda-v-steklyannoj-butylke-gazirovannaya-05-2.png",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-gazirovannaya-05-1.webp",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-gazirovannaya-05-2.webp",
         ]),
         price: 75600,
         isHidden: false,
@@ -80,10 +80,10 @@ module.exports = {
         }),
         slug: "voda-v-steklyannoj-butylke-033",
         previewImage:
-          "/uploads/images/products/voda-v-steklyannoj-butylke-033-1.png",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-033-1.webp",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-steklyannoj-butylke-033-1.png",
-          "/uploads/images/products/voda-v-steklyannoj-butylke-033-2.png",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-033-1.webp",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-033-2.webp",
         ]),
         price: 62400,
         isHidden: false,
@@ -104,10 +104,10 @@ module.exports = {
         }),
         slug: "voda-v-steklyannoj-butylke-05",
         previewImage:
-          "/uploads/images/products/voda-v-steklyannoj-butylke-05-1.png",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-05-1.webp",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-steklyannoj-butylke-05-1.png",
-          "/uploads/images/products/voda-v-steklyannoj-butylke-05-2.png",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-05-1.webp",
+          "/uploads/images/products/voda-v-steklyannoj-butylke-05-2.webp",
         ]),
         price: 75600,
         isHidden: false,
@@ -128,10 +128,10 @@ module.exports = {
         }),
         slug: "voda-v-plastikovoj-butylke-gazirovannaya-033",
         previewImage:
-          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-033-1.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-033-1.webp",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-033-1.png",
-          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-033-2.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-033-1.webp",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-033-2.webp",
         ]),
         price: 17520,
         isHidden: false,
@@ -152,10 +152,10 @@ module.exports = {
         }),
         slug: "voda-v-plastikovoj-butylke-033",
         previewImage:
-          "/uploads/images/products/voda-v-plastikovoj-butylke-033-1.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-033-1.webp",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-plastikovoj-butylke-033-1.png",
-          "/uploads/images/products/voda-v-plastikovoj-butylke-033-2.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-033-1.webp",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-033-2.webp",
         ]),
         price: 17520,
         isHidden: false,
@@ -176,10 +176,10 @@ module.exports = {
         }),
         slug: "voda-v-plastikovoj-butylke-1",
         previewImage:
-          "/uploads/images/products/voda-v-plastikovoj-butylke-1-1.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-1-1.webp",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-plastikovoj-butylke-1-1.png",
-          "/uploads/images/products/voda-v-plastikovoj-butylke-1-2.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-1-1.webp",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-1-2.webp",
         ]),
         price: 18800,
         isHidden: false,
@@ -200,10 +200,10 @@ module.exports = {
         }),
         slug: "voda-v-plastikovoj-butylke-gazirovannaya-1",
         previewImage:
-          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-1-1.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-1-1.webp",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-1-1.png",
-          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-1-2.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-1-1.webp",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-1-2.webp",
         ]),
         price: 18800,
         isHidden: false,
@@ -224,10 +224,10 @@ module.exports = {
         }),
         slug: "voda-v-plastikovoj-butylke-15",
         previewImage:
-          "/uploads/images/products/voda-v-plastikovoj-butylke-15-1.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-15-1.webp",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-plastikovoj-butylke-15-1.png",
-          "/uploads/images/products/voda-v-plastikovoj-butylke-15-2.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-15-1.webp",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-15-2.webp",
         ]),
         price: 16800,
         isHidden: false,
@@ -248,10 +248,10 @@ module.exports = {
         }),
         slug: "voda-v-plastikovoj-butylke-gazirovannaya-15",
         previewImage:
-          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-15-1.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-15-1.webp",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-15-1.png",
-          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-15-2.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-15-1.webp",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-15-2.webp",
         ]),
         price: 16800,
         isHidden: false,
@@ -272,10 +272,10 @@ module.exports = {
         }),
         slug: "voda-v-plastikovoj-butylke-05",
         previewImage:
-          "/uploads/images/products/voda-v-plastikovoj-butylke-05-1.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-05-1.webp",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-plastikovoj-butylke-05-1.png",
-          "/uploads/images/products/voda-v-plastikovoj-butylke-05-2.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-05-1.webp",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-05-2.webp",
         ]),
         price: 19800,
         isHidden: false,
@@ -296,10 +296,10 @@ module.exports = {
         }),
         slug: "voda-v-plastikovoj-butylke-gazirovannaya-05",
         previewImage:
-          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-05-1.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-05-1.webp",
         images: JSON.stringify([
-          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-05-1.png",
-          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-05-2.png",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-05-1.webp",
+          "/uploads/images/products/voda-v-plastikovoj-butylke-gazirovannaya-05-2.webp",
         ]),
         price: 19800,
         isHidden: false,
