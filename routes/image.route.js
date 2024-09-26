@@ -6,7 +6,7 @@ const router = express.Router();
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
 
-router.post("/", [auth, admin], (req, res) => {
+router.post("/", (req, res) => {
   try {
     res.json({
       images: req.files?.images,

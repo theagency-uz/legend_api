@@ -51,6 +51,7 @@ module.exports = function (app) {
       "image/webp",
       "image/jpeg",
       "image/svg+xml",
+      "image/gif"
     ];
 
     if (allowedMimetypes.includes(file.mimetype)) {
@@ -83,13 +84,12 @@ module.exports = function (app) {
 
   app.use(
     cors({
-      //   origin: [
-      //     "https://parfumgallery.uz",
-      //     /\.parfumgallery\.uz$/,
-      //     "http://localhost:3000",
-      //     /^http:\/\/192\.168\.0\.[0-9]{3}:3000$/,
-      //   ],
-      origin: "*",
+        origin: [
+          "https://legendwater.uz",
+          /\.legendwater\.uz$/,
+          "http://localhost:3000",
+        ],
+      // origin: "*",
       allowedHeaders: "*",
       methods: "*",
       preflightContinue: true,
