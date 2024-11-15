@@ -4,6 +4,7 @@ on:
      push:
           branches:
                - main
+
 jobs:
      build-and-deploy:
           runs-on: ubuntu-latest
@@ -35,7 +36,14 @@ jobs:
                  run: ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
 
                - name: Transfer with rsync
-                 run: rsync -avz --delete -e "ssh" . ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.TARGET_DIRECTORY }}
+                 run: |
+                      rsync -avz --delete \
+                        --no-perms --no-owner --no-group --no-times \
+                        -e "ssh -o StrictHostKeyChecking=no" \
+                        . ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.TARGET_DIRECTORY }}
+
+               - name: Install Dependencies on Server
+                 run: ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'cd ${{ secrets.TARGET_DIRECTORY }} && npm install --production'
 
                - name: Start with PM2
-                 run: ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'cd ${{ secrets.TARGET_DIRECTORY }} && (pm2 restart --cwd ${{ secrets.TARGET_DIRECTORY }} front || pm2 start npm --name "front" --cwd ${{ secrets.TARGET_DIRECTORY }} -- start)'
+                 run: ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'cd ${{ secrets.TARGET_DIRECTORY }} && pm2 restart all || pm2 start npm --name "front" -- start'
